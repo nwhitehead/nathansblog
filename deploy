@@ -2,3 +2,13 @@
 
 USER=root
 HOST=shimmerai.online
+DIR=/var/www/blog.shimmerai.online/
+CONFFILE=/etc/nginx/sites-available/blog.shimmerai.online
+ENABLEDIR=/etc/nginx/sites-enabled/
+
+hugo && \
+    rsync -avz --delete public/ ${USER}@${HOST}:${DIR} && \
+    rsync -vz nginx.conf ${USER}@${HOST}:${CONFFILE} && \
+    ssh ${USER}@${HOST} "ln -s ${CONFFILE} ${ENABLEDIR}" && \
+    ssh ${USER}@${HOST} "service nginx restart"
+exit 0
