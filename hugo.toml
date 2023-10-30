@@ -1,0 +1,4 @@
+baseURL = 'https://blog.shimmerai.online/'
+languageCode = 'en-us'
+title = "Nathan's Blog"
+theme = 'ananke'
